@@ -32,7 +32,10 @@ li a:hover {
 /*----------------------------------main----------------------------------------------*/
 main {
 	background-color: rgba(175, 217, 176, 0.269);
-	min-height: 70em;
+	min-height: 70vh;
+}
+p {
+	height: 5em;
 }
 .caroimg {
 	height: 20em;
