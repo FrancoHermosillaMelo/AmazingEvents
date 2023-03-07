@@ -34,8 +34,11 @@ main {
 	background-color: rgba(175, 217, 176, 0.269);
 	min-height: 70vh;
 }
-p {
+.p-home {
 	height: 5em;
+}
+#section-cards {
+	padding-bottom: 25px;
 }
 .caroimg {
 	height: 20em;
@@ -133,3 +136,9 @@ i:hover {
 }
 
 /*----------------------------------footer--------------------------------------------*/
+
+@media (min-width: 320px) and (max-width: 425px) {
+	label {
+		width: 130px;
+	}
+}

@@ -1,4 +1,22 @@
 const $cards = document.querySelector('#section-cards');
+const $divs = document.querySelector('#divCategory');
+const category = Array.from(new Set(data.events.map(valor => valor.category)));
+console.log(category);
+
+function crearInputs(datos) {
+	return `<div class="form-check me-4">
+    <input class="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate" />
+    <label class="form-check-label" for="flexCheckIndeterminate"> ${datos} </label>
+</div>`;
+}
+
+function acomodarInputs(datos, elemento) {
+	let contenedor = '';
+	for (let inputs of datos) {
+		contenedor += crearInputs(inputs);
+	}
+	elemento.innerHTML = contenedor;
+}
 
 function crearCards(arrayCards) {
 	return `<div class="card mt-3" style="width: 18rem">
@@ -27,3 +45,4 @@ function ponerTarjetas(arrayCards, elemento) {
 }
 
 ponerTarjetas(data.events, $cards);
+acomodarInputs(category, $divs);
