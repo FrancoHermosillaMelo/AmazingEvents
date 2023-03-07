@@ -4,8 +4,8 @@ const category = Array.from(new Set(data.events.map(valor => valor.category)));
 
 function crearInputs(datos) {
 	return `<div class="form-check me-4">
-    <input class="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate" />
-    <label class="form-check-label" for="flexCheckIndeterminate"> ${datos} </label>
+    <input class="form-check-input" type="checkbox" value=${datos} id="${datos}" />
+    <label class="form-check-label" for="${datos}"> ${datos} </label>
 </div>`;
 }
 
@@ -39,6 +39,15 @@ function ponerTarjetas(arrayCards, elemento) {
 		template += crearTarjetas(cards);
 	}
 	elemento.innerHTML = template;
+}
+
+$divs.addEventListener('change', e => {
+	filtradoCheck(data.events);
+});
+
+function filtradoCheck(array) {
+	const check = Array.from(document.querySelectorAll('input[type=checkbox]:checked'));
+	console.log(check);
 }
 
 ponerTarjetas(data.events, $cards);
