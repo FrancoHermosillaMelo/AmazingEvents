@@ -1,7 +1,6 @@
 const $cards = document.querySelector('#section-cards');
 const $divs = document.querySelector('#divCategory');
 const category = Array.from(new Set(data.events.map(valor => valor.category)));
-console.log(category);
 
 function crearInputs(datos) {
 	return `<div class="form-check me-4">
@@ -10,7 +9,7 @@ function crearInputs(datos) {
 </div>`;
 }
 
-function acomodarInputs(datos, elemento) {
+function ponerInputs(datos, elemento) {
 	let contenedor = '';
 	for (let inputs of datos) {
 		contenedor += crearInputs(inputs);
@@ -18,7 +17,7 @@ function acomodarInputs(datos, elemento) {
 	elemento.innerHTML = contenedor;
 }
 
-function crearCards(arrayCards) {
+function crearTarjetas(arrayCards) {
 	return `<div class="card mt-3" style="width: 18rem">
     <img src="${arrayCards.image}" alt="${arrayCards.category}" class="card-img-top img-s" />
     <div class="card-body">
@@ -34,13 +33,13 @@ function crearCards(arrayCards) {
 </div>`;
 }
 
-function acomodarCards(arrayCards, elemento) {
+function ponerTarjetas(arrayCards, elemento) {
 	let template = '';
 	for (let cards of arrayCards) {
-		template += crearCards(cards);
+		template += crearTarjetas(cards);
 	}
 	elemento.innerHTML = template;
 }
 
-acomodarCards(data.events, $cards);
-acomodarInputs(category, $divs);
+ponerTarjetas(data.events, $cards);
+ponerInputs(category, $divs);

@@ -140,5 +140,6 @@ i:hover {
 @media (min-width: 320px) and (max-width: 425px) {
 	label {
 		width: 130px;
+		padding-bottom: 20px;
 	}
 }

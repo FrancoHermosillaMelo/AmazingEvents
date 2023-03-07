@@ -1,7 +1,6 @@
 const $cards = document.querySelector('#section-cards');
 const $divs = document.querySelector('#divCategory');
 const category = Array.from(new Set(data.events.map(valor => valor.category)));
-console.log(category);
 
 function crearInputs(datos) {
 	return `<div class="form-check me-4">
@@ -10,14 +9,15 @@ function crearInputs(datos) {
 </div>`;
 }
 
-function acomodarInputs(datos, elemento) {
+function ponerInputs(datos, elemento) {
 	let contenedor = '';
 	for (let inputs of datos) {
 		contenedor += crearInputs(inputs);
 	}
 	elemento.innerHTML = contenedor;
 }
-function crearCards(arrayCards) {
+
+function crearTarjetas(arrayCards) {
 	return `<div class="card mt-3" style="width: 18rem">
     <img src="${arrayCards.image}" alt="${arrayCards.category}" class="card-img-top img-s" />
     <div class="card-body">
@@ -37,11 +37,11 @@ function ponerTarjetas(arrayCards, elemento) {
 	let template = '';
 	for (let event of arrayCards) {
 		if (event.date >= '2022-01-01') {
-			template += crearCards(event);
+			template += crearTarjetas(event);
 		}
 	}
 	elemento.innerHTML = template;
 }
 
 ponerTarjetas(data.events, $cards);
-acomodarInputs(category, $divs);
+ponerInputs(category, $divs);
