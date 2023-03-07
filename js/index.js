@@ -2,21 +2,6 @@ const $cards = document.querySelector('#section-cards');
 const $divs = document.querySelector('#divCategory');
 const category = Array.from(new Set(data.events.map(valor => valor.category)));
 
-function crearInputs(datos) {
-	return `<div class="form-check me-4">
-    <input class="form-check-input" type="checkbox" value=${datos} id="${datos}" />
-    <label class="form-check-label" for="${datos}"> ${datos} </label>
-</div>`;
-}
-
-function ponerInputs(datos, elemento) {
-	let contenedor = '';
-	for (let inputs of datos) {
-		contenedor += crearInputs(inputs);
-	}
-	elemento.innerHTML = contenedor;
-}
-
 function crearTarjetas(arrayCards) {
 	return `<div class="card mt-3" style="width: 18rem">
     <img src="${arrayCards.image}" alt="${arrayCards.category}" class="card-img-top img-s" />
@@ -39,6 +24,21 @@ function ponerTarjetas(arrayCards, elemento) {
 		template += crearTarjetas(cards);
 	}
 	elemento.innerHTML = template;
+}
+
+function crearInputs(datos) {
+	return `<div class="form-check me-4">
+    <input class="form-check-input" type="checkbox" value=${datos} id="${datos}" />
+    <label class="form-check-label" for="${datos}"> ${datos} </label>
+</div>`;
+}
+
+function ponerInputs(datos, elemento) {
+	let contenedor = '';
+	for (let inputs of datos) {
+		contenedor += crearInputs(inputs);
+	}
+	elemento.innerHTML = contenedor;
 }
 
 $divs.addEventListener('change', e => {
