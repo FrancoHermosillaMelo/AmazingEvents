@@ -32,7 +32,7 @@ li a:hover {
 /*----------------------------------main----------------------------------------------*/
 main {
 	background-color: rgba(175, 217, 176, 0.269);
-	min-height: 70vh;
+	min-height: 80vh;
 }
 .p-home {
 	height: 5em;
@@ -99,9 +99,8 @@ main {
 	margin-top: 4em;
 }
 .div-contact {
-	max-width: 70%;
-	margin: auto;
-	margin-top: 10em !important;
+	width: 70% !important;
+	margin: 10em auto !important;
 	background-color: rgba(175, 217, 176, 0.269);
 	padding: 20px;
 	border-radius: 20px;
@@ -117,6 +116,12 @@ th {
 td {
 	font-size: 15px;
 	height: 2em;
+}
+#divInfo {
+	height: 40vh !important;
+}
+.mainInfo {
+	height: 80vh;
 }
 /*----------------------------------main----------------------------------------------*/
 /*----------------------------------footer--------------------------------------------*/
@@ -137,9 +142,12 @@ i:hover {
 
 /*----------------------------------footer--------------------------------------------*/
 
-@media (min-width: 320px) and (max-width: 425px) {
+@media (min-width: 320px) and (max-width: 767px) {
 	label {
 		width: 130px;
 		padding-bottom: 20px;
+	}
+	#divInfo {
+		height: 75vh !important;
 	}
 }
