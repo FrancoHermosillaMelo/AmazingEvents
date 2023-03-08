@@ -2,6 +2,10 @@ const $cards = document.querySelector('#section-cards');
 const $divs = document.querySelector('#divCategory');
 const category = Array.from(new Set(data.events.map(valor => valor.category)));
 
+function fechasFiltrada(datos) {
+	return datos.filter(e => e.date >= data.currentDate);
+}
+
 function mensaje() {
 	return `<h2 class= "text-center text-dark p-5">No result found</h2>`;
 }
@@ -24,13 +28,13 @@ function crearTarjetas(arrayCards) {
 
 function ponerTarjetas(arrayCards, elemento) {
 	let template = '';
-	if (arrayCards == 0) {
+	if (arrayCards.length == 0) {
 		template = mensaje();
+		console.log(template);
+		console.log(arrayCards);
 	}
 	for (let event of arrayCards) {
-		if (event.date >= '2022-01-01') {
-			template += crearTarjetas(event);
-		}
+		template += crearTarjetas(event);
 	}
 	elemento.innerHTML = template;
 }
@@ -88,8 +92,8 @@ function filtradoSearch(array) {
 //----------------------FILTROS CRUZADOS ---------------------------//
 
 function filtroCruzado() {
-	return filtradoCheck(filtradoSearch(data.events));
+	return filtradoCheck(filtradoSearch(fechasFiltrada(data.events)));
 }
 
-ponerTarjetas(data.events, $cards);
+ponerTarjetas(fechasFiltrada(data.events), $cards);
 ponerInputs(category, $divs);
