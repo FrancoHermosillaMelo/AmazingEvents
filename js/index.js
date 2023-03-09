@@ -24,7 +24,7 @@ function mensaje() {
 
 function ponerTarjetas(arrayCards, elemento) {
 	let template = '';
-	if (arrayCards.length == 0) {
+	if (arrayCards == 0) {
 		template = mensaje();
 	}
 	for (let cards of arrayCards) {
