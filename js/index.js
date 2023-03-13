@@ -1,7 +1,28 @@
 const $cards = document.querySelector('#section-cards');
-const $divs = document.querySelector('#divCategory');
-const category = Array.from(new Set(data.events.map(valor => valor.category)));
+const $divInput = document.querySelector('#divCategory');
+const $srh = document.querySelector('#srh');
 
+//---------------------CREAR PROMESA--------------------------//
+function datosAPI() {
+	fetch(' https://mindhub-xj03.onrender.com/api/amazing')
+		.then(response => response.json())
+		.then(datosEvent => {
+			const categoriaListas = Array.from(new Set(datosEvent.events.map(evento => evento.category)));
+			crearInputs(categoriaListas);
+			ponerTarjetas(datosEvent.events, $cards);
+			ponerInputs(categoriaListas, $divInput);
+			$divInput.addEventListener('change', e => {
+				ponerTarjetas(filtroCruzado(datosEvent.events), $cards);
+			});
+			$srh.addEventListener('keyup', e => {
+				ponerTarjetas(filtroCruzado(datosEvent.events), $cards);
+			});
+		})
+		.catch(error => console.log(error));
+}
+datosAPI();
+
+//------------------------------------------------------------//
 function crearTarjetas(arrayCards) {
 	return `<div class="card mt-3" style="width: 18rem">
     <img src="${arrayCards.image}" alt="${arrayCards.category}" class="card-img-top img-s" />
@@ -40,18 +61,14 @@ function crearInputs(datos) {
     </div>`;
 }
 
-function ponerInputs(datos, elemento) {
+function ponerInputs(arrayDatos, elemento) {
 	let contenedor = '';
-	for (let inputs of datos) {
+	for (let inputs of arrayDatos) {
 		contenedor += crearInputs(inputs);
 	}
 	elemento.innerHTML = contenedor;
 }
 // ---------------------FILTRAR CHECK----------------------------- //
-
-$divs.addEventListener('change', e => {
-	ponerTarjetas(filtroCruzado(), $cards);
-});
 
 function filtradoCheck(array) {
 	const check = Array.from(document.querySelectorAll('input[type=checkbox]:checked'));
@@ -67,12 +84,9 @@ function filtradoCheck(array) {
 }
 
 // ---------------------FILTRAR SEACH---------------------------------//
-srh.addEventListener('keyup', e => {
-	ponerTarjetas(filtroCruzado(), $cards);
-});
 
 function filtradoSearch(array) {
-	const searchValor = srh.value.toLowerCase();
+	const searchValor = $srh.value.toLowerCase();
 	if (searchValor.length === 0) {
 		return array;
 	}
@@ -84,9 +98,6 @@ function filtradoSearch(array) {
 
 //----------------------FILTROS CRUZADOS ---------------------------//
 
-function filtroCruzado() {
-	return filtradoCheck(filtradoSearch(data.events));
+function filtroCruzado(array) {
+	return filtradoCheck(filtradoSearch(array));
 }
-
-ponerTarjetas(data.events, $cards);
-ponerInputs(category, $divs);

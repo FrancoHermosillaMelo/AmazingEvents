@@ -1,10 +1,31 @@
 const $cards = document.querySelector('#section-cards');
-const $divs = document.querySelector('#divCategory');
-const category = Array.from(new Set(data.events.map(valor => valor.category)));
+const $divInput = document.querySelector('#divCategory');
+const $srh = document.querySelector('#srh');
 
-function fechasFiltrada(datos) {
-	return datos.filter(e => e.date <= data.currentDate);
+//---------------------CREAR PROMESA--------------------------//
+function datosAPI() {
+	fetch(' https://mindhub-xj03.onrender.com/api/amazing')
+		.then(response => response.json())
+		.then(datosEvent => {
+			const categoriaListas = Array.from(new Set(datosEvent.events.map(evento => evento.category)));
+			const eventosFiltrados = datosEvent.events.filter(
+				event => event.date < datosEvent.currentDate
+			);
+			crearInputs(categoriaListas);
+			ponerTarjetas(eventosFiltrados, $cards);
+			ponerInputs(categoriaListas, $divInput);
+			$divInput.addEventListener('change', e => {
+				ponerTarjetas(filtroCruzado(eventosFiltrados), $cards);
+			});
+			$srh.addEventListener('keyup', e => {
+				ponerTarjetas(filtroCruzado(eventosFiltrados), $cards);
+			});
+		})
+		.catch(error => console.log(error));
 }
+datosAPI();
+
+//-------------------------------------------------------------------//
 
 function mensaje() {
 	return `<h2 class= "text-center text-dark p-5">No result found</h2>`;
@@ -54,10 +75,6 @@ function ponerInputs(datos, elemento) {
 
 // ------------------------------------------------------ //
 
-$divs.addEventListener('change', e => {
-	ponerTarjetas(filtroCruzado(), $cards);
-});
-
 function filtradoCheck(array) {
 	const check = Array.from(document.querySelectorAll('input[type=checkbox]:checked'));
 	const valorInput = check.map(elemento => elemento.value);
@@ -72,12 +89,9 @@ function filtradoCheck(array) {
 }
 
 // ---------------------FILTRAR SEACH---------------------------------//
-srh.addEventListener('keyup', e => {
-	ponerTarjetas(filtroCruzado(), $cards);
-});
 
 function filtradoSearch(array) {
-	const searchValor = srh.value.toLowerCase();
+	const searchValor = $srh.value.toLowerCase();
 	if (searchValor.length === 0) {
 		return array;
 	}
@@ -89,9 +103,6 @@ function filtradoSearch(array) {
 
 //----------------------FILTROS CRUZADOS ---------------------------//
 
-function filtroCruzado() {
-	return filtradoCheck(filtradoSearch(fechasFiltrada(data.events)));
+function filtroCruzado(array) {
+	return filtradoCheck(filtradoSearch(array));
 }
-
-ponerTarjetas(fechasFiltrada(data.events), $cards);
-ponerInputs(category, $divs);

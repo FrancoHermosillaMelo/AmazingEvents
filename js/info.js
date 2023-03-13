@@ -1,7 +1,22 @@
 const detalles = document.querySelector('#divInfo');
-const params = new URLSearchParams(location.search);
-const id = params.get('id');
-const idContent = data.events.find(e => e._id === id);
+
+//---------------------CREAR PROMESA--------------------------//
+
+function datosAPI() {
+	fetch(' https://mindhub-xj03.onrender.com/api/amazing')
+		.then(response => response.json())
+		.then(datosEvent => {
+			const params = new URLSearchParams(location.search);
+			const id = params.get('id');
+			const idContent = datosEvent.events.find(event => event._id == id);
+			crearInfo(idContent);
+			renderInfo(idContent, detalles);
+		})
+		.catch(error => console.log(error));
+}
+datosAPI();
+
+//------------------------------------------------------------//
 
 function crearInfo(data) {
 	const change = data.estimate ? 'estimate' : 'assistance';
@@ -38,5 +53,3 @@ function renderInfo(obj, elemento) {
 	template += crearInfo(obj);
 	elemento.innerHTML = template;
 }
-
-renderInfo(idContent, detalles);

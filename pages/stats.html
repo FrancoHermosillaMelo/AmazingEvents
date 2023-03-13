@@ -78,85 +78,58 @@
 					</span>
 				</div>
 			</section>
-			<table class="table table-bordered">
-				<tr>
-					<th colspan="6" class="bg-success">Events statistics</th>
-				</tr>
+			<table class="m-1 table table-bordered">
+				<thead>
+					<tr>
+						<th colspan="6" class="bg-success">Events statistics</th>
+					</tr>
+					<tr>
+						<td colspan="2" class="text-table bg-light">
+							Events with the highest percentage of attendance
+						</td>
+						<td colspan="2" class="text-table bg-light">
+							Events with the lowest percentage of attendance
+						</td>
+						<td colspan="2" class="text-table bg-light">Event with langer capacity</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td colspan="2" class="bg-light" id="mayorAsistencia"></td>
+						<td colspan="2" class="bg-light" id="menorAsistencia"></td>
+						<td colspan="2" class="bg-light" id="mayorCapacidad"></td>
+					</tr>
+				</tbody>
+			</table>
 
-				<tr>
-					<td colspan="2" class="text-table bg-light">
-						Events with the highest percentage of attendance
-					</td>
-					<td colspan="2" class="text-table bg-light">
-						Events with the lowest percentage of attendance
-					</td>
-					<td colspan="2" class="text-table bg-light">Event with langer capacity</td>
-				</tr>
-				<tr>
-					<td colspan="2" class="bg-light"></td>
-					<td colspan="2" class="bg-light"></td>
-					<td colspan="2" class="bg-light"></td>
-				</tr>
+			<table class="m-1 table table-bordered">
+				<thead>
+					<tr>
+						<th colspan="6" class="bg-success">Upcoming events statistic by category</th>
+					</tr>
 
-				<tr>
-					<th colspan="6" class="bg-success">Upcoming events statistic by category</th>
-				</tr>
+					<tr>
+						<td colspan="2" class="text-table bg-light">Categories</td>
+						<td colspan="2" class="text-table bg-light">Revenues</td>
+						<td colspan="2" class="text-table bg-light">Percentage of attendance</td>
+					</tr>
+				</thead>
+				<tbody id="tablaUpcoming"></tbody>
+			</table>
 
-				<tr>
-					<td colspan="2" class="text-table bg-light">categories</td>
-					<td colspan="2" class="text-table bg-light">Revenues</td>
-					<td colspan="2" class="text-table bg-light">Percentage of attendance</td>
-				</tr>
-				<tr>
-					<td colspan="2" class="bg-light"></td>
-					<td colspan="2" class="bg-light"></td>
-					<td colspan="2" class="bg-light"></td>
-				</tr>
-				<tr>
-					<td colspan="2" class="bg-light"></td>
-					<td colspan="2" class="bg-light"></td>
-					<td colspan="2" class="bg-light"></td>
-				</tr>
-				<tr>
-					<td colspan="2" class="bg-light"></td>
-					<td colspan="2" class="bg-light"></td>
-					<td colspan="2" class="bg-light"></td>
-				</tr>
+			<table class="m-1 table table-bordered">
+				<thead>
+					<tr>
+						<th colspan="6" class="bg-success">Past events statistic by category</th>
+					</tr>
 
-				<tr>
-					<th colspan="6" class="bg-success">Past events statistic by category</th>
-				</tr>
-
-				<tr>
-					<td colspan="2" class="text-table bg-light">categories</td>
-					<td colspan="2" class="text-table bg-light">Revenues</td>
-					<td colspan="2" class="text-table bg-light">Percentage of attendance</td>
-				</tr>
-				<tr>
-					<td colspan="2" class="bg-light"></td>
-					<td colspan="2" class="bg-light"></td>
-					<td colspan="2" class="bg-light"></td>
-				</tr>
-				<tr>
-					<td colspan="2" class="bg-light"></td>
-					<td colspan="2" class="bg-light"></td>
-					<td colspan="2" class="bg-light"></td>
-				</tr>
-				<tr>
-					<td colspan="2" class="bg-light"></td>
-					<td colspan="2" class="bg-light"></td>
-					<td colspan="2" class="bg-light"></td>
-				</tr>
-				<tr>
-					<td colspan="2" class="bg-light"></td>
-					<td colspan="2" class="bg-light"></td>
-					<td colspan="2" class="bg-light"></td>
-				</tr>
-				<tr>
-					<td colspan="2" class="bg-light"></td>
-					<td colspan="2" class="bg-light"></td>
-					<td colspan="2" class="bg-light"></td>
-				</tr>
+					<tr>
+						<td colspan="2" class="text-table bg-light">Categories</td>
+						<td colspan="2" class="text-table bg-light">Revenues</td>
+						<td colspan="2" class="text-table bg-light">Percentage of attendance</td>
+					</tr>
+				</thead>
+				<tbody id="tablaPast"></tbody>
 			</table>
 		</main>
 
@@ -177,5 +150,6 @@
 			integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
 			crossorigin="anonymous"
 		></script>
+		<script src="../js/stats.js"></script>
 	</body>
 </html>
